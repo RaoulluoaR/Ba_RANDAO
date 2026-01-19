@@ -154,7 +154,7 @@ participants:
     # Valid values are nimbus, lighthouse, lodestar, teku, prysm and vero
     # ( The prysm validator only works with a prysm CL client )
     # Defaults to matching the chosen CL client (cl_type)
-    vc_type: ""
+    vc_type: "lighthouse"
 
     # The Docker image that should be used for the separate validator client
     # Defaults by client:
@@ -349,6 +349,16 @@ participants:
     # This is useful for testing or when you want to manually control when the beacon node starts.
     # Defaults to false
     skip_start: false
+    
+    ################################ Adding further participants ###################################
+    
+  - el_type: geth
+    cl_type: lighthouse
+    vc_type: lighthouse
+
+  - el_type: geth
+    cl_type: lighthouse
+    vc_type: lighthouse
 
 # Participants matrix creates a participant for each combination of EL, CL and VC clients
 # Each EL/CL/VC item can provide the same parameters as a standard participant
@@ -448,7 +458,7 @@ network_params:
       # Defaults to 0
       start: 0
       # The number of validators to generate from this mnemonic
-      count: 10
+      count: 16
       # The withdrawal address for these validators
       # Only used when wd_prefix is 0x01 or 0x02 (execution layer withdrawal credentials)
       wd_address: "0x000000000000000000000000000000000000dEaD"
