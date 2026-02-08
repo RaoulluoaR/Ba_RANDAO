@@ -1,0 +1,20 @@
+ ./sts [-v 0] [-A] [-t 0]
+             [-P num=value[,num=value]..] [-i iterations] [-I reportCycle] [-O]
+             [-w workDir] [-c] [-s] [-F format] [-j jobnum] [-S bitcount]
+             [-m mode] [-T numOfThreads] [-d pvaluesdir] [-h] [randdata]
+
+
+./sts \
+  -F a \
+  -S 10752 \
+  -i 1 \
+  randao_binary_stream.txt
+
+
+./sts -F a -S 10752 -i 1 -P 4=5 randao_binary_stream.txt
+
+
+
+nur entropy test laufen lassen:
+./sts -F a -S 10752 -i 1 -t 11 -P 4=5 randao_binary_stream.txt
+

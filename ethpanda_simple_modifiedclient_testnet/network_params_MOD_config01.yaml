@@ -1,0 +1,33 @@
+network:
+  name: randao-experiment-devnet
+
+ethereum_package:
+  participants:
+    - el_type: geth
+      el_image: ethereum/client-go:v1.14.7
+      cl_type: lighthouse
+      cl_image: my-lighthouse:randao-fork
+      validator_count: 16
+
+  network_params:
+    seconds_per_slot: 6
+    slots_per_epoch: 8
+    electra_fork_epoch: 0
+
+  genesis_params:
+    genesis_delay: 10
+    min_genesis_active_validator_count: 16
+
+  execution_layer:
+    chain_id: 777777
+    network_id: 777777
+
+  beacon_chain:
+    preset: minimal
+    extra_flags:
+      - "--disable-enr-auto-update"
+
+  validator:
+    extra_flags:
+      - "--suggested-fee-recipient=0x000000000000000000000000000000000000dead"
+
