@@ -2,115 +2,49 @@
 participants:
 
   # ==================================================
-  # Geth + Lighthouse (4 instances → 128 validators)
+  # Geth + Lighthouse 
   # ==================================================
   - el_type: geth
     cl_type: lighthouse
     vc_type: lighthouse
-    validator_count: 8
+    validator_count: 128
     #participant_name: glh-01
 
   - el_type: geth
     cl_type: lighthouse
     vc_type: lighthouse
-    validator_count: 8
+    validator_count: 16
     #participant_name: glh-02
 
-  - el_type: geth
-    cl_type: lighthouse
-    vc_type: lighthouse
-    validator_count: 8
-    #participant_name: glh-03
-
-  - el_type: geth
-    cl_type: lighthouse
-    vc_type: lighthouse
-    validator_count: 8
-    #participant_name: glh-04
-
 
   # ==================================================
-  # Nethermind + Lighthouse (4 instances → 128 validators)
+  # Nethermind + Lighthouse 
   # ==================================================
   - el_type: nethermind
     cl_type: lighthouse
     vc_type: lighthouse
-    validator_count: 8
+    validator_count: 16
     #participant_name: nmlh-01
 
-  - el_type: nethermind
-    cl_type: lighthouse
-    vc_type: lighthouse
-    validator_count: 8
-    #participant_name: nmlh-02
-
-  - el_type: nethermind
-    cl_type: lighthouse
-    vc_type: lighthouse
-    validator_count: 8
-    #participant_name: nmlh-03
-
-  - el_type: nethermind
-    cl_type: lighthouse
-    vc_type: lighthouse
-    validator_count: 8
-    #participant_name: nmlh-04
-
 
   # ==================================================
-  # Geth + Prysm (4 instances → 128 validators)
+  # Geth + Prysm 
   # ==================================================
   - el_type: geth
     cl_type: prysm
     vc_type: prysm
-    validator_count: 8
+    validator_count: 16
     #participant_name: gp-01
 
-  - el_type: geth
-    cl_type: prysm
-    vc_type: prysm
-    validator_count: 8
-    #participant_name: gp-02
-
-  - el_type: geth
-    cl_type: prysm
-    vc_type: prysm
-    validator_count: 8
-    #participant_name: gp-03
-
-  - el_type: geth
-    cl_type: prysm
-    vc_type: prysm
-    validator_count: 8
-    #participant_name: gp-04
-
 
   # ==================================================
-  # Nethermind + Prysm (4 instances → 128 validators)
+  # Nethermind + Prysm 
   # ==================================================
   - el_type: nethermind
     cl_type: prysm
     vc_type: prysm
-    validator_count: 8
+    validator_count: 16
     #participant_name: nmp-01
-
-  - el_type: nethermind
-    cl_type: prysm
-    vc_type: prysm
-    validator_count: 8
-    #participant_name: nmp-02
-
-  - el_type: nethermind
-    cl_type: prysm
-    vc_type: prysm
-    validator_count: 8
-    #participant_name: nmp-03
-
-  - el_type: nethermind
-    cl_type: prysm
-    vc_type: prysm
-    validator_count: 8
-    #participant_name: nmp-04
 
 
 # Default configuration parameters for the network
@@ -178,7 +112,7 @@ network_params:
   max_request_blob_sidecars_electra: 1152
 
   # The number of validator keys that each CL validator node should get (128 defaukt)
-  num_validator_keys_per_node: 8
+  num_validator_keys_per_node: 128
 
   # This mnemonic will a) be used to create keystores for all the types of validators that we have and b) be used to generate a CL genesis.ssz that has the children
   # validator keys already preregistered as validators
@@ -375,7 +309,7 @@ network_params:
   # This flag is meant to be used with 16 nodes where each node gets 8 unique columns
   # Ensure that you set the number of validator keys per node to less than or equal to 8 so that validator custody is not affected
   # Defaults to false
-  perfect_peerdas_enabled: true
+  perfect_peerdas_enabled: false
 
   # Gas limit for the network
   # Default to 0

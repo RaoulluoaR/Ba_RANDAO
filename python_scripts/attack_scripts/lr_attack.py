@@ -7,9 +7,9 @@ import json
 # CONFIG
 # =========================
 
-BEACON_API = "http://127.0.0.1:32788"
+BEACON_API = "http://127.0.0.1:32794"
 ENCLAVE = "my-testnet"
-NumberOfAttacks = 1
+NumberOfAttacks = 400
 PauseBetweenAttacks = 0
 ChanceOfAttack = 1
 
@@ -30,97 +30,36 @@ def get_last_proposer_of_epoch(epoch):
     return [int(j["data"][-1]["validator_index"]), int(j["data"][-1]["slot"])]   #return validator ID and last slot of epoch
    
 def get_validator_client(index):
-    # ==================================================
-    # Geth + Lighthouse (glh-01 .. glh-08) → 0–127
-    # ==================================================
-    if 0 <= index <= 15:
-        return "vc-glh-01"
-    elif 16 <= index <= 31:
-        return "vc-glh-02"
-    elif 32 <= index <= 47:
-        return "vc-glh-03"
-    elif 48 <= index <= 63:
-        return "vc-glh-04"
-    elif 64 <= index <= 79:
-        return "vc-glh-05"
-    elif 80 <= index <= 95:
-        return "vc-glh-06"
-    elif 96 <= index <= 111:
-        return "vc-glh-07"
-    elif 112 <= index <= 127:
-        return "vc-glh-08"
-
-    # ==================================================
-    # Nethermind + Lighthouse (nmlh-01 .. nmlh-08) → 128–255
-    # ==================================================
-    elif 128 <= index <= 143:
-        return "vc-nmlh-01"
-    elif 144 <= index <= 159:
-        return "vc-nmlh-02"
-    elif 160 <= index <= 175:
-        return "vc-nmlh-03"
-    elif 176 <= index <= 191:
-        return "vc-nmlh-04"
-    elif 192 <= index <= 207:
-        return "vc-nmlh-05"
-    elif 208 <= index <= 223:
-        return "vc-nmlh-06"
-    elif 224 <= index <= 239:
-        return "vc-nmlh-07"
-    elif 240 <= index <= 255:
-        return "vc-nmlh-08"
-
-    # ==================================================
-    # Geth + Prysm (gp-01 .. gp-08) → 256–383
-    # ==================================================
-    elif 256 <= index <= 271:
-        return "vc-gp-01"
-    elif 272 <= index <= 287:
-        return "vc-gp-02"
-    elif 288 <= index <= 303:
-        return "vc-gp-03"
-    elif 304 <= index <= 319:
-        return "vc-gp-04"
-    elif 320 <= index <= 335:
-        return "vc-gp-05"
-    elif 336 <= index <= 351:
-        return "vc-gp-06"
-    elif 352 <= index <= 367:
-        return "vc-gp-07"
-    elif 368 <= index <= 383:
-        return "vc-gp-08"
-
-    # ==================================================
-    # Nethermind + Prysm (nmp-01 .. nmp-08) → 384–511
-    # ==================================================
-    elif 384 <= index <= 399:
-        return "vc-nmp-01"
-    elif 400 <= index <= 415:
-        return "vc-nmp-02"
-    elif 416 <= index <= 431:
-        return "vc-nmp-03"
-    elif 432 <= index <= 447:
-        return "vc-nmp-04"
-    elif 448 <= index <= 463:
-        return "vc-nmp-05"
-    elif 464 <= index <= 479:
-        return "vc-nmp-06"
-    elif 480 <= index <= 495:
-        return "vc-nmp-07"
-    elif 496 <= index <= 511:
-        return "vc-nmp-08"
-
-    else:
+    if not (0 <= index <= 191):
         raise ValueError(f"Unknown validator index {index}")
 
-
+    if index < 128:
+        return None
+    elif index < 144:
+        return "cl-2-lighthouse-geth"
+    elif index < 160:
+        return "cl-3-lighthouse-nethermind"
+    elif index < 176:
+        return "cl-4-prysm-geth"
+    else:
+        return "cl-5-prysm-nethermind"
     
 def stop_client(cl):
     print(f"Stopping {cl}")
+
+    if cl is None:
+        print("targeted super node")
+        return
+
     subprocess.run(["kurtosis", "service", "stop", ENCLAVE, cl])
 
 def start_client(cl):
     print(f"Starting {cl}")
+
+    if cl is None:
+        print("targeted super node, didnt get stopped")
+        return
+
     subprocess.run(["kurtosis", "service", "start", ENCLAVE, cl])
     
 # =========================

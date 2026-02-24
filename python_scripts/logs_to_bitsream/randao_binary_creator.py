@@ -1,9 +1,10 @@
 #BitStreamCreator -> json log file to bit randao data
 import json
 
-INPUT_FILE = "randao_log.jsonl"
+INPUT_FILE = "randao_log_Simple_Unmod_base.jsonl"
 BITSTREAM_FILE = "randao_binary_stream.txt"
 BITLINE_FILE = "randao_binary_sep.txt"
+HEXSTREAM_FILE = "randao_hex.txt"
 
 
 def hex_to_256bit_binary(hex_str):
@@ -16,6 +17,7 @@ def hex_to_256bit_binary(hex_str):
 
 def process_randao_log():
     bitstream = []
+    hexstream = []
     bitlines = []
 
     with open(INPUT_FILE, "r") as f:
@@ -34,9 +36,16 @@ def process_randao_log():
             # 2) comma-separated bits per seed
             bitlines.append(binary)
 
+            # 3) continuoes hexstream
+            hexstream.append(hex_seed)
+
     # write bitstream
     with open(BITSTREAM_FILE, "w") as f:
         f.write("".join(bitstream))
+
+    # write hexstream
+    with open(HEXSTREAM_FILE, "w") as f:
+        f.write("".join(hexstream))
 
     # write csv-style bit file
     with open(BITLINE_FILE, "w") as f:

@@ -1,0 +1,45 @@
+Total bits loaded: 87040
+
+--- Monobit Test ---
+Zeros: 43435
+Ones : 43605
+Z-score: 0.5762215285808054
+p-value: 0.564465455368992
+
+--- Shannon Entropy ---
+Entropy: 0.9999972482758367
+
+--- Min-Entropy ---
+Min-Entropy: 0.997184984392946
+
+--- 2-Bit Serial Test ---
+Counts: {'00': 21617, '01': 21818, '10': 21817, '11': 21787}
+Chi-square: 1.2771631107894161
+p-value: 0.734562932281873
+
+--- Runs Test ---
+Observed runs: 43636
+Z-score: 0.7874983422713678
+p-value: 0.4309901984577008
+
+--- Autocorrelation ---
+Lag 1: -0.002657807489647754
+Lag 2: -0.004806332740100236
+Lag 3: -0.001394033504139508
+Lag 4: 0.0009153488605744441
+Lag 5: 0.0035464943852518685
+Lag 6: 0.00043279793588161207
+Lag 7: 0.005384921574603043
+Lag 8: 0.003305235415504072
+Lag 9: -0.0002911150692581901
+Lag 10: 0.001765606313483533
+
+--- Hamming Distance Between Consecutive Seeds ---
+Number of seeds: 340
+Mean Hamming Distance: 128.2566371681416
+Std Dev: 8.100160704617188
+Expected mean (ideal): 128
+Expected std (ideal): 8
+
+Analysis complete.
+

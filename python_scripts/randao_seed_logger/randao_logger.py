@@ -2,8 +2,8 @@ import requests
 import time
 import json
 
-BEACON_API = "http://127.0.0.1:32800"
-POLL_INTERVAL = 6  # seconds
+BEACON_API = "http://127.0.0.1:32865"
+POLL_INTERVAL = 3  # seconds
 
 def get_finalized_randao():
     r = requests.get(
